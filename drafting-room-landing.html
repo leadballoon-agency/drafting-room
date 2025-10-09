@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Drafting Room | Bespoke Tailoring - Architected Around You</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-navy: #0a1628;
+            --architect-blue: #1e3a5f;
+            --accent-gold: #c9a961;
+            --light-grey: #f5f5f5;
+            --medium-grey: #888;
+            --text-dark: #2c2c2c;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        .sans-serif {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.85) 0%, rgba(30, 58, 95, 0.85) 100%),
+                        url('public/hero.webp') center center / cover no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(201, 169, 97, 0.08) 50px,
+                    rgba(201, 169, 97, 0.08) 51px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(201, 169, 97, 0.08) 50px,
+                    rgba(201, 169, 97, 0.08) 51px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(201, 169, 97, 0.02) 10px,
+                    rgba(201, 169, 97, 0.02) 11px
+            ),
+            repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 255, 255, 0.02) 2px,
+                rgba(255, 255, 255, 0.02) 4px
+            );
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            z-index: 1;
+            padding: 2rem;
+            max-width: 800px;
+        }
+
+        .logo {
+            margin-bottom: 1rem;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .divider {
+            width: 80px;
+            height: 1px;
+            background: var(--accent-gold);
+            margin: 2rem auto;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+            letter-spacing: 0.1rem;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: -apple-system, sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.1rem;
+            text-transform: uppercase;
+            border: none;
+            font-weight: 500;
+            line-height: 1;
+            vertical-align: middle;
+        }
+
+        .btn-primary {
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+        }
+
+        .btn-primary:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid var(--white);
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--primary-navy);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            opacity: 0;
+            transform: translateY(-100%);
+            transition: all 0.3s ease;
+        }
+
+        nav.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.05rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--primary-navy);
+        }
+
+        .section-subtitle {
+            color: var(--medium-grey);
+            font-size: 1.2rem;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            background: var(--light-grey);
+        }
+
+        .philosophy-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .philosophy-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-navy);
+        }
+
+        .philosophy-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            font-weight: 300;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--medium-grey);
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
+        }
+
+        /* Process Section */
+        .process {
+            background: var(--white);
+        }
+
+        .process-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--accent-gold);
+            transform: translateX(-50%);
+        }
+
+        .process-step {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .process-step:nth-child(even) {
+            direction: rtl;
+        }
+
+        .process-step:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .step-content {
+            padding: 2rem;
+        }
+
+        .step-number {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-navy);
+        }
+
+        .step-description {
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        .step-details {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--medium-grey);
+        }
+
+        .quiz-container {
+            max-width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quiz-screen {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .quiz-screen.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Quiz Start Screen */
+        .quiz-start-content {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(201, 169, 97, 0.2);
+            border-top: 2px solid var(--accent-gold);
+            padding: 5rem 4rem;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 60px rgba(201, 169, 97, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-start-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 20px,
+                    rgba(201, 169, 97, 0.03) 20px,
+                    rgba(201, 169, 97, 0.03) 21px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 20px,
+                    rgba(201, 169, 97, 0.03) 20px,
+                    rgba(201, 169, 97, 0.03) 21px
+                );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .quiz-start-content > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .blueprint-icon {
+            width: 60px;
+            height: 2px;
+            background: var(--accent-gold);
+            margin: 0 auto 2.5rem;
+        }
+
+        .quiz-start-content h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            font-weight: 300;
+            letter-spacing: 0.02em;
+        }
+
+        .quiz-start-content p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 3rem;
+            line-height: 1.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quiz-benefits {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .benefit-item {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            font-family: -apple-system, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 300;
+        }
+
+        /* Quiz Progress */
+        .quiz-progress {
+            margin-bottom: 4rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 2px;
+            background: rgba(201, 169, 97, 0.15);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            border-radius: 2px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-gold) 0%, #e0c589 100%);
+            width: 0%;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(201, 169, 97, 0.4);
+        }
+
+        .progress-text {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: -apple-system, sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        /* Question Container */
+        .question-container {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(201, 169, 97, 0.2);
+            border-left: 3px solid var(--accent-gold);
+            padding: 4rem 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 60px rgba(201, 169, 97, 0.1);
+            min-height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .question-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 30px,
+                    rgba(201, 169, 97, 0.02) 30px,
+                    rgba(201, 169, 97, 0.02) 31px
+                );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .question-container > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .question {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .question.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .question h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+        }
+
+        .question-subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 3.5rem;
+            font-size: 0.95rem;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+        }
+
+        .option-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 2rem 2.5rem;
+            border: 1px solid rgba(201, 169, 97, 0.15);
+            border-left: 2px solid rgba(201, 169, 97, 0.3);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(201, 169, 97, 0.08) 0%, transparent 100%);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 0;
+        }
+
+        .option-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .option-card:hover {
+            border-color: rgba(201, 169, 97, 0.6);
+            border-left-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(8px);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2), inset 0 0 20px rgba(201, 169, 97, 0.05);
+        }
+
+        .option-card:hover::before {
+            width: 100%;
+        }
+
+        .option-card.selected {
+            border-color: var(--accent-gold);
+            border-left-color: var(--accent-gold);
+            border-left-width: 3px;
+            background: rgba(201, 169, 97, 0.12);
+            box-shadow: 0 4px 24px rgba(201, 169, 97, 0.25), inset 0 0 30px rgba(201, 169, 97, 0.1);
+        }
+
+        .option-card.selected::before {
+            width: 100%;
+            background: linear-gradient(90deg, rgba(201, 169, 97, 0.15) 0%, transparent 100%);
+        }
+
+        .option-title {
+            font-size: 1.15rem;
+            color: var(--white);
+            margin-bottom: 0.6rem;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+        }
+
+        .option-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* Results Screen */
+        .results-content {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(201, 169, 97, 0.2);
+            border-top: 2px solid var(--accent-gold);
+            padding: 5rem 4rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 60px rgba(201, 169, 97, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 20px,
+                    rgba(201, 169, 97, 0.03) 20px,
+                    rgba(201, 169, 97, 0.03) 21px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 20px,
+                    rgba(201, 169, 97, 0.03) 20px,
+                    rgba(201, 169, 97, 0.03) 21px
+                );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .results-content > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .results-header h3 {
+            font-size: 2.2rem;
+            color: var(--white);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+        }
+
+        .results-body {
+            margin: 3rem 0;
+            text-align: left;
+        }
+
+        .result-insight {
+            font-size: 1.25rem;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            font-style: italic;
+            font-weight: 300;
+            text-align: center;
+        }
+
+        .result-features {
+            list-style: none;
+            margin: 2.5rem 0;
+        }
+
+        .result-features li {
+            padding: 1rem 0;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .result-features li::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            background: var(--accent-gold);
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--primary-navy);
+            color: var(--white);
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(201, 169, 97, 0.08) 50px,
+                    rgba(201, 169, 97, 0.08) 51px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(201, 169, 97, 0.08) 50px,
+                    rgba(201, 169, 97, 0.08) 51px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(201, 169, 97, 0.02) 10px,
+                    rgba(201, 169, 97, 0.02) 11px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(201, 169, 97, 0.02) 10px,
+                    rgba(201, 169, 97, 0.02) 11px
+                );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .cta-section > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Booking Form */
+        .booking {
+            background: var(--white);
+            padding: 5rem 2rem;
+        }
+
+        .booking-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-navy);
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-option input {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--primary-navy);
+            color: var(--white);
+            padding: 1.2rem;
+            font-size: 1rem;
+            letter-spacing: 0.1rem;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background: var(--architect-blue);
+        }
+
+        /* Updated Booking Section */
+        .booking-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .booking-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+
+        .booking-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 3rem 0;
+            text-align: left;
+        }
+
+        .booking-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .feature-icon {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+        }
+
+        .btn-large {
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+        }
+
+        .booking-note {
+            margin-top: 1.5rem;
+            color: var(--medium-grey);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 22, 40, 0.97);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            border-radius: 0;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+            border-bottom: 1px solid var(--light-grey);
+            background: var(--white);
+        }
+
+        .modal-header h3 {
+            font-size: 1.8rem;
+            color: var(--primary-navy);
+            margin: 0;
+        }
+
+        .modal-close {
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--medium-grey);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--primary-navy);
+        }
+
+        .modal-body {
+            flex: 1;
+            padding: 0;
+            overflow-y: auto;
+        }
+
+        .ghl-embed {
+            width: 100%;
+            height: 600px;
+            background: var(--white);
+            position: relative;
+        }
+
+        .ghl-embed iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-navy);
+            color: var(--white);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(201, 169, 97, 0.08) 50px,
+                    rgba(201, 169, 97, 0.08) 51px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(201, 169, 97, 0.08) 50px,
+                    rgba(201, 169, 97, 0.08) 51px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(201, 169, 97, 0.02) 10px,
+                    rgba(201, 169, 97, 0.02) 11px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(201, 169, 97, 0.02) 10px,
+                    rgba(201, 169, 97, 0.02) 11px
+                );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        footer > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .philosophy-content,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-step {
+                grid-template-columns: 1fr;
+            }
+
+            .process-timeline::before {
+                left: 20px;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .btn-outline {
+                display: block;
+                margin: 1rem 0 0 0;
+            }
+
+            .booking-features {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 100%;
+                height: 100%;
+                max-height: 100vh;
+                border-radius: 0;
+            }
+
+            .modal-header {
+                padding: 1.5rem;
+            }
+
+            .modal-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .ghl-embed {
+                height: calc(100vh - 80px);
+            }
+
+            /* Quiz responsive */
+            .quiz-start-content,
+            .question-container,
+            .results-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .question h3 {
+                font-size: 1.5rem;
+            }
+
+            .quiz-benefits {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            /* Assessment modal mobile */
+            #assessmentModal .modal-content {
+                width: 100%;
+                height: 100%;
+                max-height: 100vh;
+                max-width: 100% !important;
+            }
+
+            #assessmentModal .modal-body {
+                min-height: calc(100vh - 80px);
+            }
+        }
+    </style>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1140012328071729');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1140012328071729&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- Scroll to top on page load -->
+    <script>
+        // Force scroll to top on page load/refresh
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+        window.addEventListener('beforeunload', function () {
+            window.scrollTo(0, 0);
+        });
+    </script>
+</head>
+<body>
+    <script>
+        // Ensure page starts at top
+        window.scrollTo(0, 0);
+    </script>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <ul class="sans-serif">
+            <li><a href="#philosophy">Philosophy</a></li>
+            <li><a href="#process">Process</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo">
+                <img src="public/The_Drafting_Room_logo.avif" alt="The Drafting Room">
+            </div>
+            <div class="divider"></div>
+            <h1>Where Precision Meets Personality</h1>
+            <div class="subtitle sans-serif">TAILORING REIMAGINED FOR THE MODERN MAN</div>
+            <p class="hero-description">
+                Every exceptional structure begins with a blueprint.<br>
+                Your perfect suit begins here.
+            </p>
+            <div>
+                <button class="btn btn-primary" id="open-assessment-btn">Begin Your Assessment</button>
+                <a href="#process" class="btn btn-outline">View the Process</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="philosophy">
+        <div class="container">
+            <div class="philosophy-content">
+                <div class="philosophy-text">
+                    <h3>Your Blueprint, Perfected</h3>
+                    <p>
+                        We believe that like great architecture, exceptional tailoring is equal parts art and engineering. Every angle considered. Every line intentional. Every detail purposeful.
+                    </p>
+                    <p>
+                        At The Drafting Room, we don't just make suits. We engineer personal armor for modern life, crafted with obsessive attention to detail and an unwavering commitment to perfection.
+                    </p>
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="stat-number">28</div>
+                            <div class="stat-label sans-serif">Measurements</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">150+</div>
+                            <div class="stat-label sans-serif">Hours of Craft</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label sans-serif">Possibilities</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="philosophy-visual">
+                    <img src="public/section-1.png" alt="The Drafting Room Craftsmanship" style="width: 100%; height: 400px; object-fit: cover; object-position: top left; border-radius: 2px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Drafting Room Method</h2>
+                <p class="section-subtitle">Six steps to sartorial perfection</p>
+            </div>
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-content">
+                        <div class="step-number">01</div>
+                        <h3 class="step-title">Consultation</h3>
+                        <p class="step-description">
+                            Your vision meets our expertise in a relaxed, unhurried consultation. Explore our curated selection of over 5,000 fabrics while we discuss your lifestyle, preferences, and sartorial ambitions.
+                        </p>
+                        <div class="step-details sans-serif">
+                            1.5 hours | Complimentary whisky | Style assessment
+                        </div>
+                    </div>
+                    <div></div>
+                </div>
+                <div class="process-step">
+                    <div></div>
+                    <div class="step-content">
+                        <div class="step-number">02</div>
+                        <h3 class="step-title">Measurement & Design</h3>
+                        <p class="step-description">
+                            Precision mapping of your form using 28 points of measurement. We create your unique pattern - a blueprint that captures not just your dimensions, but your posture and movement.
+                        </p>
+                        <div class="step-details sans-serif">
+                            28 measurements | Digital pattern creation | Posture analysis
+                        </div>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-content">
+                        <div class="step-number">03</div>
+                        <h3 class="step-title">Pattern Drafting</h3>
+                        <p class="step-description">
+                            Your blueprint comes to life as our master cutters translate measurements into a unique paper pattern. This becomes your permanent template, archived for future commissions.
+                        </p>
+                        <div class="step-details sans-serif">
+                            Master cutting | Pattern archival | Quality assurance
+                        </div>
+                    </div>
+                    <div></div>
+                </div>
+                <div class="process-step">
+                    <div></div>
+                    <div class="step-content">
+                        <div class="step-number">04</div>
+                        <h3 class="step-title">Construction</h3>
+                        <p class="step-description">
+                            Over 6-8 weeks, your suit passes through the hands of specialized craftsmen. Each contributing their expertise - from floating the canvas to hand-stitching the buttonholes.
+                        </p>
+                        <div class="step-details sans-serif">
+                            150+ hours | Hand-padded lapels | 3,000+ stitches
+                        </div>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-content">
+                        <div class="step-number">05</div>
+                        <h3 class="step-title">Fitting & Refinement</h3>
+                        <p class="step-description">
+                            The moment of truth. We conduct a comprehensive fitting, making minute adjustments to ensure the suit moves with you, breathes with you, and feels like a second skin.
+                        </p>
+                        <div class="step-details sans-serif">
+                            Precision adjustments | Balance perfection | Final approval
+                        </div>
+                    </div>
+                    <div></div>
+                </div>
+                <div class="process-step">
+                    <div></div>
+                    <div class="step-content">
+                        <div class="step-number">06</div>
+                        <h3 class="step-title">Delivery</h3>
+                        <p class="step-description">
+                            Your blueprint realized. We present your completed suit with care instructions and our commitment to lifetime pattern storage. First-year adjustments are complimentary.
+                        </p>
+                        <div class="step-details sans-serif">
+                            Final presentation | Care guide | Lifetime relationship
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Are You Ready?</h2>
+            <p>Sonny works with a select group of clients who value partnership over transaction.<br>The assessment reveals whether The Drafting Room is right for you.</p>
+        </div>
+    </section>
+
+    <!-- Invitation Info Section -->
+    <section id="booking" class="booking">
+        <div class="container">
+            <div class="section-header">
+                <h2>The Invitation Experience</h2>
+                <p class="section-subtitle">What to expect when you qualify</p>
+            </div>
+            <div class="booking-content">
+                <p class="booking-description">
+                    Once invited, you'll experience a private consultation at our atelier.
+                    Sonny personally guides every session—exploring your vision, lifestyle, and the story you want your wardrobe to tell.
+                </p>
+                <div class="booking-features">
+                    <div class="booking-feature">
+                        <span class="feature-icon">✓</span>
+                        <span>90-minute private consultation with Sonny</span>
+                    </div>
+                    <div class="booking-feature">
+                        <span class="feature-icon">✓</span>
+                        <span>Whisky & conversation</span>
+                    </div>
+                    <div class="booking-feature">
+                        <span class="feature-icon">✓</span>
+                        <span>Fabric & style exploration</span>
+                    </div>
+                    <div class="booking-feature">
+                        <span class="feature-icon">✓</span>
+                        <span>Zero pressure, all partnership</span>
+                    </div>
+                </div>
+                <p class="booking-note sans-serif">Questions? Call directly: +44 (0)20 7XXX XXXX</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Booking Widget -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Schedule Your Consultation</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <!-- GHL Calendar Embed -->
+                <div class="ghl-embed">
+                    <iframe src="https://link.grantosullivan.com/widget/booking/GlSTdUMrJ8vysIzF9Jmc" style="width: 100%; height: 100%; border: none;" scrolling="no" id="GlSTdUMrJ8vysIzF9Jmc_1759951455503"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Ateliers</h4>
+                    <ul>
+                        <li>Mayfair, London</li>
+                        <li>City of London</li>
+                        <li>By Appointment Only</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#collections">Bespoke Suits</a></li>
+                        <li><a href="#">Shirts</a></li>
+                        <li><a href="#">Overcoats</a></li>
+                        <li><a href="#">Alterations</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="mailto:hello@drafting-room.co.uk">hello@drafting-room.co.uk</a></li>
+                        <li>+44 (0)20 7XXX XXXX</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 The Drafting Room. Tailoring Reimagined.</p>
+                <p style="margin-top: 1rem; font-size: 0.85rem;">
+                    <a href="privacy-policy.html" style="color: rgba(255, 255, 255, 0.7); text-decoration: underline;">Privacy Policy</a>
+                </p>
+                <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.6;">
+                    This site uses cookies and pixels for advertising purposes. By using this site, you agree to our use of Facebook advertising technology to deliver personalized experiences.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Assessment Modal -->
+    <div id="assessmentModal" class="modal">
+        <div class="modal-content" style="max-width: 1000px; background: transparent; box-shadow: none;">
+            <div class="modal-header" style="background: rgba(10, 22, 40, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                <h3 style="color: var(--white);">Your Personal Assessment</h3>
+                <span class="modal-close" id="assessment-close" style="color: rgba(255, 255, 255, 0.8);">&times;</span>
+            </div>
+            <div class="modal-body" style="padding: 0; background: linear-gradient(135deg, var(--primary-navy) 0%, var(--architect-blue) 100%); position: relative; min-height: 600px;">
+                <!-- Blueprint grid overlay -->
+                <div style="position: absolute; width: 100%; height: 100%; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.02) 2px, rgba(255, 255, 255, 0.02) 4px), repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255, 255, 255, 0.02) 2px, rgba(255, 255, 255, 0.02) 4px); top: 0; left: 0; pointer-events: none; z-index: 0;"></div>
+
+                <!-- Quiz Container -->
+                <div class="quiz-container" style="padding: 3rem 2rem; position: relative; z-index: 1; max-width: 900px; margin: 0 auto;">
+                <!-- Quiz Start Screen -->
+                <div class="quiz-screen active" id="quiz-start">
+                    <div class="quiz-start-content">
+                        <div class="blueprint-icon"></div>
+                        <h3>Understanding the Man Before Measuring the Body</h3>
+                        <p>Before Sonny takes your first measurement, he needs to understand who you're becoming. This assessment reveals whether The Drafting Room is the right partner for your transformation.</p>
+                        <div class="quiz-benefits">
+                            <div class="benefit-item">60 seconds</div>
+                            <div class="benefit-item">Invitation-only</div>
+                            <div class="benefit-item">Personally reviewed</div>
+                        </div>
+                        <button class="btn btn-primary btn-large" id="start-quiz-btn">Begin Your Assessment</button>
+                    </div>
+                </div>
+
+                <!-- Quiz Questions Screen -->
+                <div class="quiz-screen" id="quiz-questions">
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                        <div class="progress-text"><span id="current-q">1</span> of 6</div>
+                    </div>
+
+                    <div class="question-container" id="question-container">
+                        <!-- Questions will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- Quiz Results Screen -->
+                <div class="quiz-screen" id="quiz-results">
+                    <div class="results-content">
+                        <div class="results-header">
+                            <h3 id="results-greeting"></h3>
+                            <div class="divider"></div>
+                        </div>
+                        <div class="results-body" id="results-body">
+                            <!-- Results will be dynamically inserted -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GHL Form Embed Script -->
+    <script src="https://link.grantosullivan.com/js/form_embed.js" type="text/javascript"></script>
+
+    <script>
+        // Assessment Modal
+        const assessmentModal = document.getElementById('assessmentModal');
+        const openAssessmentBtn = document.getElementById('open-assessment-btn');
+        const assessmentClose = document.getElementById('assessment-close');
+
+        // Open assessment modal
+        openAssessmentBtn.addEventListener('click', function() {
+            assessmentModal.classList.add('active');
+            document.body.classList.add('modal-open');
+        });
+
+        // Close assessment modal
+        assessmentClose.addEventListener('click', function() {
+            assessmentModal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+        });
+
+        // Close on outside click
+        assessmentModal.addEventListener('click', function(e) {
+            if (e.target === assessmentModal) {
+                assessmentModal.classList.remove('active');
+                document.body.classList.remove('modal-open');
+            }
+        });
+
+        // Close with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && assessmentModal.classList.contains('active')) {
+                assessmentModal.classList.remove('active');
+                document.body.classList.remove('modal-open');
+            }
+        });
+
+        // Show navigation on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('visible');
+            } else {
+                navbar.classList.remove('visible');
+            }
+        });
+
+        // Smooth scrolling for anchor links (except modal triggers)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            if (!anchor.classList.contains('open-booking-modal')) {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            }
+        });
+
+        // Modal functionality
+        const modal = document.getElementById('bookingModal');
+        const modalTriggers = document.querySelectorAll('.open-booking-modal');
+        const modalClose = document.querySelector('.modal-close');
+
+        // Open modal when any booking button is clicked
+        modalTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                modal.classList.add('active');
+                document.body.classList.add('modal-open'); // Prevent background scrolling
+                
+                // Track which button was clicked (for analytics)
+                const buttonText = this.textContent;
+                console.log('Booking modal opened from:', buttonText);
+                
+                // You can pass data to GHL here if needed
+                // Example: Update iframe src with UTM parameters or source tracking
+                const iframe = document.querySelector('.ghl-embed iframe');
+                if (iframe) {
+                    // Uncomment and modify based on your GHL setup:
+                    // const source = this.dataset.source || 'website';
+                    // iframe.src = `YOUR_GHL_URL?source=${source}&button=${encodeURIComponent(buttonText)}`;
+                }
+            });
+        });
+
+        // Close modal when X is clicked
+        modalClose.addEventListener('click', function() {
+            modal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+        });
+
+        // Close modal when clicking outside the modal content
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.classList.remove('modal-open');
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                modal.classList.remove('active');
+                document.body.classList.remove('modal-open');
+            }
+        });
+
+        // Handle GHL iframe messages if needed
+        window.addEventListener('message', function(e) {
+            // Handle messages from GHL iframe
+            // Example: Close modal after successful booking
+            if (e.data === 'booking-complete' || e.data.event === 'booking-complete') {
+                modal.classList.remove('active');
+                document.body.classList.remove('modal-open');
+                // You could show a success message here
+                alert('Thank you for booking your consultation. You will receive a confirmation email shortly.');
+            }
+        });
+
+        // ===================
+        // QUIZ FUNCTIONALITY
+        // ===================
+
+        const quizData = {
+            questions: [
+                {
+                    id: 1,
+                    question: "The Moment You're Preparing For",
+                    subtitle: "Understanding your vision helps us ensure we're the right partner for your journey.",
+                    options: [
+                        {
+                            title: "A Defining Life Milestone",
+                            description: "Wedding, milestone birthday, career achievement",
+                            scores: { sophistication: 8, investment: 9, urgency: 9 }
+                        },
+                        {
+                            title: "Career Transformation",
+                            description: "New role, business launch, executive presence",
+                            scores: { sophistication: 7, investment: 7, urgency: 7 }
+                        },
+                        {
+                            title: "Personal Reinvention",
+                            description: "Elevating your everyday, becoming your best self",
+                            scores: { sophistication: 9, investment: 8, urgency: 5 }
+                        },
+                        {
+                            title: "Building a Wardrobe Foundation",
+                            description: "Starting your bespoke journey, investment pieces",
+                            scores: { sophistication: 6, investment: 6, urgency: 4 }
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    question: "How Do You Want to Feel?",
+                    subtitle: "Tailoring reimagined: We craft the feeling first, then the garment.",
+                    options: [
+                        {
+                            title: "Quietly Confident",
+                            description: "Understated power, effortless sophistication",
+                            scores: { sophistication: 9, investment: 8, urgency: 5 }
+                        },
+                        {
+                            title: "Distinguished & Refined",
+                            description: "Timeless elegance, refined taste",
+                            scores: { sophistication: 10, investment: 9, urgency: 6 }
+                        },
+                        {
+                            title: "Modern & Sharp",
+                            description: "Contemporary edge, forward-thinking style",
+                            scores: { sophistication: 7, investment: 7, urgency: 7 }
+                        },
+                        {
+                            title: "Authentically Myself",
+                            description: "True to who I am, no pretense",
+                            scores: { sophistication: 8, investment: 7, urgency: 5 }
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    question: "Your Style Philosophy",
+                    subtitle: "This reveals whether our aesthetic sensibilities align.",
+                    options: [
+                        {
+                            title: "Classic Cinema Icons",
+                            description: "Cary Grant, Sean Connery - timeless sophistication",
+                            scores: { sophistication: 10, investment: 9, urgency: 5 }
+                        },
+                        {
+                            title: "Modern Architects & Designers",
+                            description: "Clean lines, purposeful details, form follows function",
+                            scores: { sophistication: 9, investment: 8, urgency: 6 }
+                        },
+                        {
+                            title: "British Heritage",
+                            description: "Savile Row tradition, understated luxury",
+                            scores: { sophistication: 10, investment: 10, urgency: 5 }
+                        },
+                        {
+                            title: "Contemporary Leaders",
+                            description: "Today's innovators and entrepreneurs",
+                            scores: { sophistication: 7, investment: 7, urgency: 7 }
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    question: "The Experience You Deserve",
+                    subtitle: "We reimagine every touchpoint—from first contact to final reveal.",
+                    options: [
+                        {
+                            title: "Private Atelier Experience",
+                            description: "Dedicated time in our showroom, full attention",
+                            scores: { sophistication: 9, investment: 9, urgency: 7 }
+                        },
+                        {
+                            title: "Whisky & Cigars Session",
+                            description: "Unhurried exploration, fabric discovery, expert guidance",
+                            scores: { sophistication: 10, investment: 10, urgency: 6 }
+                        },
+                        {
+                            title: "Efficient & Focused",
+                            description: "Streamlined process, expert recommendations",
+                            scores: { sophistication: 6, investment: 6, urgency: 8 }
+                        },
+                        {
+                            title: "Collaborative Creation",
+                            description: "Deep involvement in every design decision",
+                            scores: { sophistication: 9, investment: 8, urgency: 5 }
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    question: "What Matters Most?",
+                    subtitle: "Your values guide our partnership—this ensures we're aligned.",
+                    options: [
+                        {
+                            title: "The Craftsmanship",
+                            description: "Hand-work, construction details, artisan mastery",
+                            scores: { sophistication: 10, investment: 10, urgency: 5 }
+                        },
+                        {
+                            title: "The Journey",
+                            description: "The process, the relationship, the experience",
+                            scores: { sophistication: 9, investment: 9, urgency: 6 }
+                        },
+                        {
+                            title: "The Final Reveal",
+                            description: "That perfect moment when everything comes together",
+                            scores: { sophistication: 8, investment: 8, urgency: 7 }
+                        },
+                        {
+                            title: "The Lasting Relationship",
+                            description: "A tailor for life, building a wardrobe over time",
+                            scores: { sophistication: 9, investment: 9, urgency: 4 }
+                        }
+                    ]
+                },
+                {
+                    id: 6,
+                    question: "Your Blueprint Begins",
+                    subtitle: "What should we call you?",
+                    options: [], // This will be a text input
+                    isNameCapture: true
+                }
+            ]
+        };
+
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let userName = '';
+        let totalScores = { sophistication: 0, investment: 0, urgency: 0 };
+
+        // Quiz Elements
+        const startQuizBtn = document.getElementById('start-quiz-btn');
+        const quizStartScreen = document.getElementById('quiz-start');
+        const quizQuestionsScreen = document.getElementById('quiz-questions');
+        const quizResultsScreen = document.getElementById('quiz-results');
+        const questionContainer = document.getElementById('question-container');
+        const progressFill = document.getElementById('progress-fill');
+        const currentQSpan = document.getElementById('current-q');
+
+        // Start Quiz
+        startQuizBtn.addEventListener('click', function() {
+            quizStartScreen.classList.remove('active');
+            quizQuestionsScreen.classList.add('active');
+            showQuestion(0);
+        });
+
+        // Show Question
+        function showQuestion(index) {
+            const question = quizData.questions[index];
+            currentQSpan.textContent = index + 1;
+            progressFill.style.width = ((index) / quizData.questions.length * 100) + '%';
+
+            if (question.isNameCapture) {
+                questionContainer.innerHTML = `
+                    <div class="question active">
+                        <h3>${question.question}</h3>
+                        <p class="question-subtitle">${question.subtitle}</p>
+                        <div style="max-width: 400px; margin: 2rem auto;">
+                            <input type="text"
+                                   id="name-input"
+                                   placeholder="Your name"
+                                   style="width: 100%; padding: 1.2rem; font-size: 1.1rem; border: 2px solid var(--light-grey); text-align: center; font-family: Georgia, serif;">
+                            <button class="btn btn-primary"
+                                    id="submit-name-btn"
+                                    style="width: 100%; margin-top: 1.5rem; padding: 1.2rem;">
+                                Reveal My Blueprint
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                const nameInput = document.getElementById('name-input');
+                const submitBtn = document.getElementById('submit-name-btn');
+
+                submitBtn.addEventListener('click', function() {
+                    userName = nameInput.value.trim() || 'Friend';
+                    showResults();
+                });
+
+                nameInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        userName = nameInput.value.trim() || 'Friend';
+                        showResults();
+                    }
+                });
+            } else {
+                let optionsHTML = '';
+                question.options.forEach((option, optIndex) => {
+                    optionsHTML += `
+                        <div class="option-card" data-option-index="${optIndex}">
+                            <div class="option-title">${option.title}</div>
+                            <div class="option-description">${option.description}</div>
+                        </div>
+                    `;
+                });
+
+                questionContainer.innerHTML = `
+                    <div class="question active">
+                        <h3>${question.question}</h3>
+                        <p class="question-subtitle">${question.subtitle}</p>
+                        <div class="options-grid">
+                            ${optionsHTML}
+                        </div>
+                    </div>
+                `;
+
+                // Add click handlers to options
+                const optionCards = questionContainer.querySelectorAll('.option-card');
+                optionCards.forEach(card => {
+                    card.addEventListener('click', function() {
+                        const optionIndex = parseInt(this.getAttribute('data-option-index'));
+                        selectOption(index, optionIndex);
+                    });
+                });
+            }
+        }
+
+        // Select Option
+        function selectOption(questionIndex, optionIndex) {
+            const question = quizData.questions[questionIndex];
+            const selectedOption = question.options[optionIndex];
+
+            // Store answer
+            userAnswers.push({
+                questionId: question.id,
+                answer: selectedOption
+            });
+
+            // Update scores
+            totalScores.sophistication += selectedOption.scores.sophistication;
+            totalScores.investment += selectedOption.scores.investment;
+            totalScores.urgency += selectedOption.scores.urgency;
+
+            // Visual feedback
+            const optionCards = questionContainer.querySelectorAll('.option-card');
+            optionCards[optionIndex].classList.add('selected');
+
+            // Move to next question after delay
+            setTimeout(() => {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < quizData.questions.length) {
+                    showQuestion(currentQuestionIndex);
+                }
+            }, 500);
+        }
+
+        // Show Results
+        function showResults() {
+            quizQuestionsScreen.classList.remove('active');
+            quizResultsScreen.classList.add('active');
+            progressFill.style.width = '100%';
+
+            // Calculate average scores
+            const numQuestions = quizData.questions.length - 1; // Exclude name capture
+            const avgSophistication = totalScores.sophistication / numQuestions;
+            const avgInvestment = totalScores.investment / numQuestions;
+            const avgUrgency = totalScores.urgency / numQuestions;
+
+            // Determine tier and personalized message
+            let resultHTML = '';
+            let tier = '';
+            let ctaButton = '';
+
+            if (avgSophistication >= 8.5 && avgInvestment >= 8) {
+                // TOP TIER - Instant invitation
+                tier = 'Blueprint';
+                resultHTML = `
+                    <p class="result-insight">
+                        ${userName}, you're not seeking a tailor.<br>
+                        You're seeking a partner in your transformation.
+                    </p>
+                    <ul class="result-features">
+                        <li>The story you want to tell through impeccable craft</li>
+                        <li>The confidence that comes from perfect fit</li>
+                        <li>The legacy of timeless, personal style</li>
+                        <li>A relationship with artisans who understand excellence</li>
+                    </ul>
+                    <p style="text-align: center; color: var(--accent-gold); margin-top: 2rem; font-size: 1.1rem;">
+                        <strong>Sonny is personally inviting you to schedule your consultation.</strong>
+                    </p>
+                `;
+                ctaButton = '<div style="text-align: center; margin-top: 3.5rem;"><button class="btn btn-primary btn-large" id="results-cta-top-tier">Accept Your Invitation</button></div>';
+
+            } else if (avgSophistication >= 6.5 && avgInvestment >= 6.5) {
+                // MID TIER - Review required
+                tier = 'Signature';
+                resultHTML = `
+                    <p class="result-insight">
+                        ${userName}, your profile reveals an appreciation for partnership over transaction.<br>
+                        This is how we reimagine the consultation.
+                    </p>
+                    <ul class="result-features">
+                        <li>Understanding who you're becoming, not just what you're buying</li>
+                        <li>Craftsmanship that speaks without shouting</li>
+                        <li>The transformation from good to exceptional</li>
+                        <li>An experience worthy of the investment</li>
+                    </ul>
+                    <p style="text-align: center; color: var(--medium-grey); margin-top: 2rem;">
+                        Sonny personally reviews each profile to ensure The Drafting Room<br>
+                        is the right fit for your journey.
+                    </p>
+                    <div style="max-width: 400px; margin: 2rem auto;">
+                        <input type="email" id="email-input" placeholder="Your email"
+                               style="width: 100%; padding: 1.2rem; font-size: 1rem; border: 2px solid var(--light-grey); margin-bottom: 1rem;">
+                    </div>
+                `;
+                ctaButton = '<div style="text-align: center; margin-top: 3.5rem;"><button class="btn btn-primary btn-large" id="request-invitation-btn">Request Your Invitation</button><p style="margin-top: 1rem; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">Sonny will reach out within 24 hours</p></div>';
+
+            } else {
+                // ENTRY TIER - Waitlist
+                tier = 'Essential';
+                resultHTML = `
+                    <p class="result-insight">
+                        ${userName}, you're beginning a journey that transforms<br>
+                        how you present yourself to the world.
+                    </p>
+                    <ul class="result-features">
+                        <li>The foundation of a distinguished wardrobe</li>
+                        <li>Quality that endures beyond trends</li>
+                        <li>Partnership with masters of their craft</li>
+                        <li>A consultation tailored to your timeline</li>
+                    </ul>
+                    <p style="text-align: center; color: var(--medium-grey); margin-top: 2rem;">
+                        We limit consultations to ensure every client receives<br>
+                        the attention their transformation deserves.
+                    </p>
+                    <div style="max-width: 400px; margin: 2rem auto;">
+                        <input type="email" id="email-input" placeholder="Your email"
+                               style="width: 100%; padding: 1.2rem; font-size: 1rem; border: 2px solid var(--light-grey); margin-bottom: 1rem;">
+                    </div>
+                `;
+                ctaButton = '<div style="text-align: center; margin-top: 3.5rem;"><button class="btn btn-primary btn-large" id="join-waitlist-btn">Join the Waitlist</button><p style="margin-top: 1rem; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">We\'ll reach out when availability matches your timeline</p></div>';
+            }
+
+            document.getElementById('results-greeting').textContent = `${userName}, Your Assessment Reveals...`;
+            document.getElementById('results-body').innerHTML = resultHTML + ctaButton;
+
+            // Add event listeners for tier-specific CTAs
+            if (tier === 'Blueprint') {
+                // Top tier - switch to booking calendar in same modal
+                const topTierBtn = document.getElementById('results-cta-top-tier');
+                topTierBtn.addEventListener('click', function() {
+                    // Track lead
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'Lead');
+                    }
+
+                    // Close assessment modal
+                    assessmentModal.classList.remove('active');
+                    // Open booking modal
+                    setTimeout(() => {
+                        modal.classList.add('active');
+                    }, 300);
+                });
+            } else if (tier === 'Signature') {
+                const requestBtn = document.getElementById('request-invitation-btn');
+                requestBtn.addEventListener('click', function() {
+                    const email = document.getElementById('email-input').value.trim();
+                    if (email && email.includes('@')) {
+                        // Track lead
+                        if (typeof fbq !== 'undefined') {
+                            fbq('track', 'Lead');
+                        }
+
+                        console.log('Mid-tier invitation request:', { name: userName, email, tier, scores: totalScores });
+                        alert('Thank you, ' + userName + '. Sonny will personally review your profile and reach out within 24 hours.');
+                        // TODO: Send to GHL with tier tag
+                    } else {
+                        alert('Please enter a valid email address');
+                    }
+                });
+            } else if (tier === 'Essential') {
+                const waitlistBtn = document.getElementById('join-waitlist-btn');
+                waitlistBtn.addEventListener('click', function() {
+                    const email = document.getElementById('email-input').value.trim();
+                    if (email && email.includes('@')) {
+                        // Track lead
+                        if (typeof fbq !== 'undefined') {
+                            fbq('track', 'Lead');
+                        }
+
+                        console.log('Waitlist signup:', { name: userName, email, tier, scores: totalScores });
+                        alert('Thank you, ' + userName + '. You\'re on the list. We\'ll reach out when we have availability.');
+                        // TODO: Send to GHL nurture sequence
+                    } else {
+                        alert('Please enter a valid email address');
+                    }
+                });
+            }
+
+            console.log('Quiz completed:', {
+                name: userName,
+                tier: tier,
+                scores: totalScores,
+                averages: { avgSophistication, avgInvestment, avgUrgency }
+            });
+        }
+    </script>
+</body>
+</html>
