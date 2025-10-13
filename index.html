@@ -815,45 +815,49 @@
             opacity: 0.7;
         }
 
-        /* Responsive - MOBILE FIXES */
+        /* Responsive - ENHANCED MOBILE OPTIMIZATION */
         @media (max-width: 768px) {
+            /* Hero Section - Perfect Viewport Handling */
             .hero {
-                height: 100svh;
-                height: 100vh;
-                min-height: 600px;
-                min-height: -webkit-fill-available;
+                height: 100dvh;
+                min-height: 100dvh;
             }
             
             .hero-content {
-                padding: 1.5rem 1.25rem;
-                padding-top: max(1.5rem, env(safe-area-inset-top));
-                padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+                padding: 1rem 1.25rem;
+                padding-top: max(1rem, env(safe-area-inset-top) + 0.5rem);
+                padding-bottom: max(2rem, env(safe-area-inset-bottom) + 1rem);
                 width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
             }
             
             .logo img {
-                height: 45px;
+                height: 40px;
             }
             
             .divider {
-                width: 60px;
-                margin: 1.25rem auto;
+                width: 50px;
+                margin: 1rem auto;
             }
             
             h1 {
-                font-size: 2rem;
-                line-height: 1.2;
-                margin-bottom: 1rem;
+                font-size: 1.75rem;
+                line-height: 1.15;
+                margin-bottom: 0.75rem;
             }
             
             .subtitle {
-                font-size: 0.85rem;
-                letter-spacing: 0.08rem;
+                font-size: 0.75rem;
+                letter-spacing: 0.1rem;
+                margin-bottom: 0.75rem;
             }
             
             .hero-description {
-                font-size: 0.95rem;
-                margin-bottom: 2rem;
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.6;
             }
             
             .hero-description br {
@@ -864,48 +868,83 @@
                 flex-direction: column;
                 gap: 0.75rem;
                 width: 100%;
-                max-width: 320px;
-                margin: 0 auto;
+                max-width: 100%;
+                padding: 0 0.5rem;
             }
             
             .btn {
                 width: 100%;
-                padding: 1rem 2rem;
-                font-size: 0.85rem;
-                min-height: 48px;
+                padding: 0.9rem 1.5rem;
+                font-size: 0.8rem;
+                letter-spacing: 0.08rem;
+                min-height: 50px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-            }
-            
-            .btn-outline {
-                margin-left: 0;
+                border-radius: 2px;
             }
 
+            /* Navigation */
             nav {
-                padding: 0.75rem 0;
+                padding: 0.65rem 0;
             }
 
             nav ul {
-                gap: 1.5rem;
+                gap: 2rem;
+                font-size: 0.85rem;
             }
 
+            /* Sections */
             section {
-                padding: 3rem 1.5rem;
+                padding: 2.5rem 1.25rem;
+            }
+
+            .section-header {
+                margin-bottom: 2.5rem;
             }
 
             h2 {
-                font-size: 1.8rem;
+                font-size: 1.65rem;
+                line-height: 1.25;
+                margin-bottom: 0.75rem;
             }
 
-            .philosophy-content,
-            .footer-grid {
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            /* Philosophy Section */
+            .philosophy-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
 
+            .philosophy-text h3 {
+                font-size: 1.5rem;
+            }
+
+            .philosophy-text p {
+                font-size: 1rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .stats {
+                gap: 1.5rem;
+                margin-top: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
+            }
+
+            /* Process Timeline */
             .process-step {
                 grid-template-columns: 1fr;
+                margin-bottom: 2.5rem;
             }
 
             .process-step:nth-child(even) {
@@ -913,101 +952,367 @@
             }
 
             .process-timeline::before {
-                left: 20px;
+                left: 15px;
             }
 
             .step-content {
-                padding: 1.5rem 1rem 1.5rem 3rem;
+                padding: 1rem 1rem 1rem 2.5rem;
+            }
+
+            .step-number {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .step-title {
+                font-size: 1.25rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .step-description {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
+            .step-details {
+                font-size: 0.8rem;
+                margin-top: 0.75rem;
+            }
+
+            /* CTA Section */
+            .cta-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .cta-section p {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            .cta-section br {
+                display: none;
+            }
+
+            /* Booking Section */
+            .booking-description {
+                font-size: 1rem;
+                line-height: 1.7;
             }
 
             .booking-features {
                 grid-template-columns: 1fr;
+                gap: 0.75rem;
+                margin: 2rem 0;
             }
 
+            .booking-feature {
+                font-size: 0.95rem;
+            }
+
+            .booking-note {
+                font-size: 0.9rem;
+            }
+
+            /* Footer */
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+
+            /* Modal - Full Screen Experience */
             .modal-content {
                 width: 100%;
                 height: 100%;
                 max-height: 100vh;
                 max-width: 100%;
+                border-radius: 0;
             }
 
             .modal-header {
-                padding: 1rem 1.5rem;
+                padding: 1rem 1.25rem;
                 position: sticky;
                 top: 0;
-                z-index: 10;
+                z-index: 100;
+                background: var(--white);
+            }
+
+            .modal-header h3 {
+                font-size: 1.25rem;
             }
 
             .modal-body {
-                height: calc(100vh - 70px);
+                height: calc(100vh - 65px);
+                overflow-y: auto;
                 -webkit-overflow-scrolling: touch;
             }
 
             .ghl-embed {
-                min-height: calc(100vh - 70px);
+                min-height: calc(100vh - 65px);
+                height: 100%;
             }
 
+            /* Assessment Modal - Optimized for Mobile */
             #assessmentModal .modal-content {
                 background: linear-gradient(135deg, var(--primary-navy) 0%, var(--architect-blue) 100%);
             }
 
             #assessmentModal .modal-header {
-                background: rgba(10, 22, 40, 0.95);
+                background: rgba(10, 22, 40, 0.98);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             }
 
             #assessmentModal .modal-header h3 {
                 color: var(--white);
-                font-size: 1.3rem;
+                font-size: 1.15rem;
             }
 
             #assessmentModal .modal-close {
-                color: rgba(255, 255, 255, 0.8);
+                color: rgba(255, 255, 255, 0.9);
+                font-size: 1.75rem;
             }
 
+            #assessmentModal .modal-body {
+                padding: 0;
+                overflow-y: auto;
+            }
+
+            /* Quiz Container - Mobile Optimized */
             .quiz-container {
-                padding: 1.5rem 1rem;
+                padding: 1.25rem 1rem;
+                max-width: 100%;
             }
 
+            /* Quiz Start Screen */
             .quiz-start-content {
-                padding: 2.5rem 1.5rem;
+                padding: 2rem 1.25rem;
+                border-width: 1px;
+            }
+
+            .blueprint-icon {
+                width: 50px;
+                margin-bottom: 1.5rem;
             }
 
             .quiz-start-content h3 {
-                font-size: 1.6rem;
+                font-size: 1.4rem;
+                line-height: 1.3;
+                margin-bottom: 1rem;
+            }
+
+            .quiz-start-content p {
+                font-size: 0.95rem;
+                line-height: 1.7;
+                margin-bottom: 2rem;
             }
 
             .quiz-benefits {
-                flex-direction: column;
-                gap: 0.75rem;
+                flex-direction: row;
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
+            .benefit-item {
+                font-size: 0.75rem;
+                letter-spacing: 0.12em;
+            }
+
+            /* Quiz Progress */
+            .quiz-progress {
+                margin-bottom: 2rem;
+            }
+
+            .progress-text {
+                font-size: 0.7rem;
+            }
+
+            /* Question Container */
             .question-container {
-                padding: 2rem 1.5rem;
+                padding: 1.75rem 1.25rem;
+                min-height: auto;
+                border-width: 1px;
             }
 
             .question h3 {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
+                line-height: 1.3;
+                margin-bottom: 0.75rem;
             }
 
+            .question-subtitle {
+                font-size: 0.85rem;
+                margin-bottom: 2rem;
+                line-height: 1.5;
+            }
+
+            /* Options Grid - Better Touch Targets */
+            .options-grid {
+                gap: 1rem;
+            }
+
+            .option-card {
+                padding: 1.25rem 1.5rem;
+                border-width: 1px;
+                border-left-width: 2px;
+                min-height: 80px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .option-card:hover {
+                transform: translateX(4px);
+            }
+
+            .option-card:active {
+                transform: scale(0.98);
+            }
+
+            .option-title {
+                font-size: 1.05rem;
+                margin-bottom: 0.5rem;
+                line-height: 1.3;
+            }
+
+            .option-description {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+
+            /* Results Screen */
             .results-content {
-                padding: 2.5rem 1.5rem;
+                padding: 2rem 1.25rem;
+                border-width: 1px;
             }
 
-            input, select, textarea {
-                font-size: 16px;
-                padding: 0.9rem;
+            .results-header h3 {
+                font-size: 1.4rem;
+                line-height: 1.3;
+                margin-bottom: 1.5rem;
+            }
+
+            .result-insight {
+                font-size: 1.05rem;
+                line-height: 1.7;
+                margin-bottom: 2rem;
+            }
+
+            .result-insight br {
+                display: none;
+            }
+
+            .result-features {
+                margin: 2rem 0;
+            }
+
+            .result-features li {
+                padding: 0.85rem 0;
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
+            .result-features li::before {
+                width: 3px;
+                height: 3px;
+                margin-right: 1rem;
+            }
+
+            /* Form Inputs - Prevent iOS Zoom */
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"],
+            select,
+            textarea {
+                font-size: 16px !important;
+                padding: 1rem;
+                border-radius: 2px;
+                -webkit-appearance: none;
+            }
+
+            /* Name Input */
+            #name-input {
+                font-family: Georgia, serif;
+                text-align: center;
+            }
+
+            /* Email/Phone Inputs */
+            #email-input,
+            #phone-input {
+                font-family: -apple-system, sans-serif;
             }
         }
 
+        /* Small Phones */
         @media (max-width: 375px) {
             h1 {
-                font-size: 1.75rem;
+                font-size: 1.6rem;
+            }
+
+            .quiz-start-content h3 {
+                font-size: 1.3rem;
+            }
+
+            .question h3 {
+                font-size: 1.2rem;
+            }
+
+            .option-card {
+                padding: 1.15rem 1.25rem;
             }
         }
 
+        /* Very Small Phones */
+        @media (max-width: 320px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .quiz-container {
+                padding: 1rem 0.75rem;
+            }
+
+            .option-card {
+                padding: 1rem 1.15rem;
+            }
+        }
+
+        /* iOS Safari Specific */
         @supports (-webkit-touch-callout: none) {
             .hero {
+                height: 100dvh;
                 min-height: -webkit-fill-available;
+            }
+
+            #assessmentModal .modal-body {
+                height: calc(100dvh - 65px);
+            }
+        }
+
+        /* Landscape Mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hero {
+                min-height: 100vh;
+                height: auto;
+                padding: 2rem 0;
+            }
+
+            .hero-content {
+                padding: 1rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-description {
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -1655,7 +1960,7 @@
             }, 500);
         }
 
-        // WEBHOOK INTEGRATION - OPTION 1
+        // WEBHOOK INTEGRATION
         function showResults() {
             quizQuestionsScreen.classList.remove('active');
             quizResultsScreen.classList.add('active');
