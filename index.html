@@ -2073,22 +2073,48 @@
             document.getElementById('results-body').innerHTML = resultHTML + ctaButton;
 
             if (tier === 'Blueprint') {
-                if (typeof fbq !== 'undefined') {
-                    fbq('track', 'Lead', {
-                        content_name: 'Blueprint Tier',
-                        value: 10.00,
-                        currency: 'GBP'
-                    });
-                }
-
                 const topTierBtn = document.getElementById('results-cta-top-tier');
-                topTierBtn.addEventListener('click', function() {
+                topTierBtn.addEventListener('click', async function() {
+                    topTierBtn.disabled = true;
+                    topTierBtn.textContent = 'Opening Calendar...';
+
+                    // Send Blueprint tier to GHL
+                    const webhookData = {
+                        name: userName,
+                        email: 'blueprint@drafting-room.co.uk', // Placeholder since no email capture
+                        phone: '', // Will be collected via calendar
+                        tier: tier,
+                        scores: {
+                            sophistication: avgSophistication.toFixed(2),
+                            investment: avgInvestment.toFixed(2),
+                            urgency: avgUrgency.toFixed(2)
+                        },
+                        totalScores: totalScores,
+                        answers: userAnswers,
+                        timestamp: new Date().toISOString(),
+                        source: 'quiz_assessment',
+                        status: 'hot_lead_calendar_opened'
+                    };
+
+                    await sendToGHL(webhookData);
+
+                    if (typeof fbq !== 'undefined') {
+                        fbq('track', 'Lead', {
+                            content_name: 'Blueprint Tier',
+                            value: 10.00,
+                            currency: 'GBP'
+                        });
+                    }
+
                     assessmentModal.classList.remove('active');
                     document.body.classList.remove('modal-open');
                     setTimeout(() => {
                         modal.classList.add('active');
                         document.body.classList.add('modal-open');
                     }, 300);
+
+                    topTierBtn.disabled = false;
+                    topTierBtn.textContent = 'Accept Your Invitation';
                 });
 
             } else if (tier === 'Signature') {
