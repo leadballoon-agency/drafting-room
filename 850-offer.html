@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Bespoke Suits From £850 | The Drafting Room London</title>
+    <meta name="title" content="Bespoke Suits From £850 | The Drafting Room London">
+    <meta name="description" content="Limited-time offer: Fully bespoke 2-piece suits from £850. Made in-house in London. Whilst stocks last. Book your consultation today.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://drafting-room.vercel.app/850-offer.html">
+    <meta property="og:title" content="Bespoke Suits From £850 | The Drafting Room London">
+    <meta property="og:description" content="Limited-time offer: Fully bespoke 2-piece suits from £850. Made in-house in London. Whilst stocks last.">
+    <meta property="og:image" content="https://drafting-room.vercel.app/assets/section-1.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+
+    <!-- Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '9134030936614493');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=9134030936614493&ev=PageView&noscript=1"
+    /></noscript>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-navy: #0a1628;
+            --architect-blue: #1e3a5f;
+            --accent-gold: #c9a961;
+            --light-grey: #f5f5f5;
+            --text-dark: #2c2c2c;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        .sans-serif {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(10, 22, 40, 0.92) 0%, rgba(30, 58, 95, 0.92) 100%),
+                        url('assets/the-drafting-room-1.png') center center / cover no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .offer-badge {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+            padding: 10px 25px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .price {
+            font-size: 4rem;
+            color: var(--accent-gold);
+            font-weight: 700;
+            margin: 20px 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            opacity: 0.95;
+        }
+
+        .urgency {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin: 20px 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: var(--primary-navy);
+            padding: 20px 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-button:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 169, 97, 0.3);
+        }
+
+        /* Features Section */
+        .features {
+            background: var(--white);
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-navy);
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            color: var(--primary-navy);
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: var(--text-dark);
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        /* Process Section */
+        .process {
+            background: var(--light-grey);
+            padding: 80px 20px;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .process-step {
+            background: var(--white);
+            padding: 30px;
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        .step-number {
+            font-size: 2rem;
+            color: var(--accent-gold);
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            color: var(--primary-navy);
+            margin-bottom: 10px;
+        }
+
+        .process-step p {
+            color: var(--text-dark);
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        /* Location Section */
+        .location {
+            background: var(--white);
+            padding: 80px 20px;
+        }
+
+        .location-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .location-card {
+            background: var(--light-grey);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .location-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-navy);
+            margin-bottom: 20px;
+        }
+
+        .location-card p {
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+
+        .location-detail {
+            font-weight: 600;
+            color: var(--architect-blue);
+        }
+
+        /* CTA Section */
+        .final-cta {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--architect-blue) 100%);
+            padding: 100px 20px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .final-cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .final-cta p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-navy);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: var(--accent-gold);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .price {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .cta-button {
+                padding: 18px 40px;
+                font-size: 1.1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .features-grid,
+            .process-steps,
+            .location-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="offer-badge">Limited Time Offer</div>
+            <h1>Fully Bespoke Suits<br>Made in London</h1>
+            <div class="price">From £850</div>
+            <p>Not made-to-measure. Not off-the-rack.</p>
+            <p><strong>Genuine bespoke construction</strong> — designed from scratch, made in-house by our own team.</p>
+            <p class="urgency">⏱ Whilst stocks last — book your consultation today</p>
+            <a href="https://link.grantosullivan.com/widget/booking/GlSTdUMrJ8vysIzF9Jmc" class="cta-button" onclick="fbq('track', 'InitiateCheckout');">Book Your Consultation</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>What You Get</h2>
+                <p class="section-subtitle">Genuine bespoke tailoring at an accessible price point</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✂️</div>
+                    <h3>Fully Bespoke</h3>
+                    <p>Not made-to-measure. Your suit is designed from the ground up with 28 individual measurements and a pattern created specifically for you.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏭</div>
+                    <h3>Made In-House</h3>
+                    <p>All suits are crafted entirely by our own team in London. No outsourcing. Every stitch is ours.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Any Design Feature</h3>
+                    <p>From lapel width to pocket style — every detail is customizable. We can incorporate any design feature you want.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧵</div>
+                    <h3>Premium Fabrics</h3>
+                    <p>Choose from our full range including wool, linen, flannel, and more. If you're looking for something specific, we have it.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Turnaround</h3>
+                    <p>Standard 3-4 weeks. Need it sooner? Rush orders available in approximately 2 weeks.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <h3>We Come To You</h3>
+                    <p>Choose between our Fulham studio or a home/office visit anywhere within the M25.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p class="section-subtitle">From consultation to collection in 3-4 weeks</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <h3>Consultation</h3>
+                    <p>90-minute appointment to discuss your vision, select fabrics, and explore design options. Complimentary whisky included.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <h3>Measurement</h3>
+                    <p>28 precise measurements are taken to create your unique pattern — capturing not just size, but posture and movement.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <h3>Construction</h3>
+                    <p>Your suit is crafted entirely in-house by our experienced team over 3-4 weeks. Every detail is made by hand.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <h3>Collection</h3>
+                    <p>Final fitting and delivery of your finished suit. Your pattern is archived for future commissions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location">
+        <div class="container">
+            <div class="section-header">
+                <h2>Where We Meet</h2>
+                <p class="section-subtitle">Choose the option that works best for you</p>
+            </div>
+            <div class="location-options">
+                <div class="location-card">
+                    <h3>📍 Fulham Studio</h3>
+                    <p class="location-detail">136-144 New Kings Road</p>
+                    <p class="location-detail">London, SW6 4LZ</p>
+                    <p style="margin-top: 15px;">Nearest tube: <strong>Putney Bridge</strong><br>(District Line, 3 mins walk)</p>
+                </div>
+                <div class="location-card">
+                    <h3>🚗 Mobile Service</h3>
+                    <p class="location-detail">We Come To You</p>
+                    <p style="margin-top: 15px;">Available anywhere within the M25.<br>We'll visit your home or office at a time that suits you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p>Limited availability. Whilst stocks last.</p>
+            <p style="font-size: 1.1rem; margin-bottom: 40px;">Questions? Call us directly: <strong>+44 7897 012088</strong></p>
+            <a href="https://link.grantosullivan.com/widget/booking/GlSTdUMrJ8vysIzF9Jmc" class="cta-button" onclick="fbq('track', 'InitiateCheckout');">Book Your Consultation Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 The Drafting Room. Bespoke Tailoring, London.</p>
+            <p><a href="mailto:hello@drafting-room.co.uk">hello@drafting-room.co.uk</a> | +44 7897 012088</p>
+            <p style="margin-top: 15px;"><a href="privacy-policy.html">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Track CTA clicks
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'InitiateCheckout', {
+                        content_name: '£850 Bespoke Suit Offer',
+                        value: 850.00,
+                        currency: 'GBP'
+                    });
+                }
+            });
+        });
+
+        // Track page engagement
+        let engaged = false;
+        setTimeout(() => {
+            if (!engaged && typeof fbq !== 'undefined') {
+                fbq('trackCustom', 'Engaged15Seconds');
+                engaged = true;
+            }
+        }, 15000);
+
+        // Track scroll depth
+        let scrollTracked = false;
+        window.addEventListener('scroll', function() {
+            if (!scrollTracked && (window.scrollY > document.body.scrollHeight / 2)) {
+                if (typeof fbq !== 'undefined') {
+                    fbq('trackCustom', 'ScrolledHalfway');
+                }
+                scrollTracked = true;
+            }
+        });
+    </script>
+</body>
+</html>
